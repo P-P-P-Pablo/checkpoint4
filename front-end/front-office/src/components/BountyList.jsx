@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
-import Navbar from './navbar/HuntBar';
+import Navbar from './navbar/SherifBar';
 
-export default function Hunter(props) {
+export default function BountyList(props) {
 	const bandits = props.bandits;
 	let [currentBandit, setCurrentBandit] = useState('');
-	let currentID = currentBandit.id - 1;
+	let currentID = currentBandit && currentBandit.id - 1;
+	const [selected, setSelected] = useState('');
 
 	useEffect(() => {
 		setCurrentBandit(bandits ? bandits[0] : '');
 	}, [bandits]);
+
+	useEffect(() => {
+		setSelected(currentBandit.id);
+	}, [currentBandit, selected]);
 
 	const handleNext = (e) => {
 		e.preventDefault();
@@ -24,11 +29,33 @@ export default function Hunter(props) {
 			: setCurrentBandit(bandits[bandits.length - 1]);
 	};
 
+	const handleChange = (e) => {
+		e.preventDefault();
+		setSelected(e.target.value);
+		setCurrentBandit(bandits[e.target.value - 1]);
+	};
+
 	return (
 		<>
-			<h1>Hunter</h1>
-			<h2>Welcome to hunter page</h2>
+			<h1>Sherif</h1>
+			<h2>Welcome to bounty list page</h2>
 			<Navbar />
+			<div>
+				{bandits.map((bandit) => {
+					return (
+						<label key={bandit.name} value={bandit.id}>
+							<input
+								key={bandit.name}
+								type='radio'
+								value={bandit.id}
+								checked={bandit.id === selected}
+								onChange={handleChange}
+							/>
+							{bandit.name}
+						</label>
+					);
+				})}
+			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
 			<button onClick={handlePrev}>precedent</button>
 			<button onClick={handleNext}>suivant</button>
