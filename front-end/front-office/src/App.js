@@ -6,6 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Hunter from './components/Hunter';
 import Sherif from './components/Sherif';
+import Bounty from './components/Bounty'
 
 import './App.css';
 import HuntList from './components/HuntList';
@@ -46,6 +47,9 @@ function App() {
 				</Route>
 				<Route path='/bountylist'>
 					{loaded && <BountyList bandits={bandits} />}
+				</Route>
+				<Route path='/bounty'>
+					<Bounty />
 				</Route>
 			</Router>
 		</div>

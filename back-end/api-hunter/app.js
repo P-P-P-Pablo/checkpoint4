@@ -8,6 +8,12 @@ const {log} = require('./lib/utils'); // log() is just a shortcut to console.log
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // * is very bad idea but meh
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 const indexRouter = require('./routes/index');
 const banditRouter = require('./routes/bandit');
 const sherifRouter = require('./routes/sherif');
