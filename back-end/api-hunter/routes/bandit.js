@@ -20,7 +20,13 @@ router.get("/:id", logInfos, (req, res, next) => {
 });
 
 router.post("/", logInfos, (req, res, next) => {
-  
+  console.log(req.body);
+  let fields = Object.keys(req.body).join(",");
+  let data = Object.values(req.body).join("','");
+  const maRequete=`INSERT INTO bandit(${fields}) VALUES ( '${data}' )`
+  connection.query(maRequete, (err, results) => {
+    endRequest(res, results, err);
+  })
 });
 
 router.put("/:id", logInfos, (req, res, next) => {

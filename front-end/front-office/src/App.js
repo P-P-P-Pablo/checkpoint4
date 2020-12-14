@@ -6,7 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Hunter from './components/Hunter';
 import Sherif from './components/Sherif';
-import Bounty from './components/Bounty'
+import Bounty from './components/Bounty';
 
 import './App.css';
 import HuntList from './components/HuntList';

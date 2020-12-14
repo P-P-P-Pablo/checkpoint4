@@ -4,7 +4,7 @@ exports.log = (obj, title = null) => {
   else console.log(obj);
 };
 exports.logInfos = (req, res, next) => {
-  console.log(`${req.method} request from ${req.hostname}`);
+  console.log(`${req.method} request from ${req.hostname} on ${req.url}`);
   next();
 };
 exports.endRequest = (res, results, err) => {
