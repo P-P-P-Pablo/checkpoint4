@@ -6,16 +6,7 @@ import axios from 'axios';
 export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
-		data.status = 'libre';
-		axios
-			.post('http://localhost:3033/', data)
-			.then((res) => {
-				alert('Prime posté');
-			})
-			.catch((err) => {
-				// Handle Error Here
-				console.error(err);
-			});
+		console.log(data)
 	};
 
 	return (
