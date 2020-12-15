@@ -41,7 +41,7 @@ export default function BountyList(props) {
 			<h1>Sherif</h1>
 			<h2>Welcome to bounty list page</h2>
 			<Navbar />
-			<div>
+			<div className="mybandits">
 				{bandits.map((bandit) => {
 					return (
 						<label key={bandit.name} value={bandit.id}>

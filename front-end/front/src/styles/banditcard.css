@@ -1,14 +1,27 @@
 .banditcontainer{
-    display:flex;
+    display: flex;
+    flex-flow: column nowrap;
     align-items: center;
     justify-items: center;
-    width:100%;
 }
 
 .banditcard{
+    padding:5%;
+    margin:5%;
     display: flex;
     flex-flow: column nowrap;
     border: solid black 2px;
+    border-radius: 10px;
     align-items: center;
     justify-items: center;
+    width:40%;
+}
+
+.banditcard .banditname, .banditprime{
+    
+    font-size: 3em;
+}
+
+.banditname, .banditprime, .banditdead, .banditregion, .banditstatus {
+    margin: 2px;
 }

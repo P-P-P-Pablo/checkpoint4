@@ -5,6 +5,14 @@
 	height: 100%;
 }
 
+form {
+	
+		display: flex;
+		flex-flow: column nowrap;
+		margin: 10;
+		max-width: 600;
+		width:50%;
+}
 
 .mybandits {
 	display: flex;

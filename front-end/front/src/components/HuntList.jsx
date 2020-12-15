@@ -85,7 +85,7 @@ export default function HuntList(props) {
 			<Navbar />
 			<div
 				className='mybandits'
-				style={{ display: 'flex', flexFlow: 'column nowrap', margin: 10 }}>
+				>
 				{bandits.map((bandit, i) => {
 					return (
 						<label key={bandit.name} value={bandit.id}>
