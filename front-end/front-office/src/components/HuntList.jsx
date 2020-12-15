@@ -37,7 +37,6 @@ export default function HuntList(props) {
 		setCurrentBandit(bandits[e.target.value - 1]);
 	};
 	const endHunt=()=>{
-		console.log(currentBandit);
 		Axios.put(`localhost:3033/hunters/mybandits/6/attrape/${currentBandit.id}`)
 	}
 

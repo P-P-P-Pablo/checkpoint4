@@ -6,8 +6,6 @@ import axios from 'axios';
 export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
-		console.log(data);
-
 		axios
 			.post(`http://localhost:3033/${data.role}s/signin`, data)
 			.then((res) => {

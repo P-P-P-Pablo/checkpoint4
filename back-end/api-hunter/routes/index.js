@@ -12,7 +12,7 @@ router.get('/test',logInfos, function(req, res, next) {
       })
 });
 
-router.get('/',logInfos, function(req, res, next) {
+router.get('/hello',logInfos, function(req, res, next) {
     console.log(__dirname);
     res.send('Hello');
 });

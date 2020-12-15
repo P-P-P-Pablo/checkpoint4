@@ -21,7 +21,6 @@ router.get('/:id', logInfos, (req, res, next) => {
 });
 
 router.post('/signup', logInfos, (req, res, next) => {
-	console.log(req.body);
 	let fields = Object.keys(req.body).join(',');
 	let data = Object.values(req.body).join("','");
 	const maRequete = `INSERT INTO user(${fields}) VALUES ( '${data}' )`;
@@ -35,12 +34,11 @@ router.post('/signup', logInfos, (req, res, next) => {
 });
 
 router.post('/signin', logInfos, (req, res, next) => {
-  console.log(req.body);
-  const name = req.body.name;
-  const pass =req.body.pass
-	const maRequete = `SELECT * FROM user WHERE name = ? AND pass= ? AND role="hunter" `
+	const name = req.body.name;
+	const pass = req.body.pass;
+	const maRequete = `SELECT * FROM user WHERE name = ? AND pass= ? AND role="hunter" `;
 
-	connection.query(maRequete,[name, pass], (err, results) => {
+	connection.query(maRequete, [name, pass], (err, results) => {
 		endRequest(res, results, err);
 	});
 });

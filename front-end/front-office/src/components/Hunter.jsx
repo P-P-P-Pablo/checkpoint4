@@ -26,7 +26,6 @@ export default function Hunter(props) {
 	};
 
 	const startHunt=()=>{
-		console.log(currentBandit);
 		Axios.put(`localhost:3033/hunters/mybandits/6/chasse/${currentBandit.id}`)
 	}
 
