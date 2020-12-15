@@ -6,7 +6,17 @@ import axios from 'axios';
 export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
-		console.log(data)
+		console.log(data);
+		//attention à pas envoyer la confirmation du password
+		/* axios
+			.post(`http://localhost:3033/${data.role}s/signup`, data)
+			.then((res) => {
+				alert('sign up confirmed');
+			})
+			.catch((err) => {
+				// Handle Error Here
+				console.error(err);
+			}); */
 	};
 
 	return (
@@ -42,8 +52,8 @@ export default function Bounty() {
 				</select>
 
 				<input
-					name='password'
-					type="password"
+					name='pass'
+					type='password'
 					placeholder='password'
 					maxlength={10}
 					minlength={6}
@@ -51,14 +61,13 @@ export default function Bounty() {
 				/>
 				<input
 					name='password confirmation'
-					type="password"
+					type='password'
 					placeholder='password'
 					maxlength={10}
 					minlength={6}
 					ref={register({ required: true })}
 				/>
 
-				
 				{/* include validation with required or other standard HTML validation rules */}
 
 				{/* errors will return when field validation fails  */}

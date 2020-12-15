@@ -6,7 +6,16 @@ import axios from 'axios';
 export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
-		console.log(data)
+		console.log(data);
+		/* axios
+			.post(`http://localhost:3033/${data.role}s/signin`, data)
+			.then((res) => {
+				alert('sign in confirmed');
+			})
+			.catch((err) => {
+				// Handle Error Here
+				console.error(err);
+			}); */
 	};
 
 	return (
