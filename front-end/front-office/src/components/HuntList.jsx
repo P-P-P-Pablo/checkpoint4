@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
 import Navbar from './navbar/HuntBar';
@@ -35,8 +36,9 @@ export default function HuntList(props) {
 		setSelected(e.target.value);
 		setCurrentBandit(bandits[e.target.value - 1]);
 	};
-	const startHunt=()=>{
-		console.log(currentBandit)
+	const endHunt=()=>{
+		console.log(currentBandit);
+		Axios.put(`localhost:3033/hunters/mybandits/6/attrape/${currentBandit.id}`)
 	}
 
 	return (
@@ -62,7 +64,7 @@ export default function HuntList(props) {
 			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
 			<button onClick={handlePrev}>precedent</button>
-			<button onClick={startHunt}>Start the hunt !</button>
+			<button onClick={endHunt}>I catched him !</button>
 			<button onClick={handleNext}>suivant</button>
 		</>
 	);

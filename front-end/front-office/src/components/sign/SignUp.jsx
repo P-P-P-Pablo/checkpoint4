@@ -6,17 +6,18 @@ import axios from 'axios';
 export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
-		console.log(data);
+		let trueData = data;
+		delete trueData['password confirmation'];
 		//attention à pas envoyer la confirmation du password
-		/* axios
-			.post(`http://localhost:3033/${data.role}s/signup`, data)
+		axios
+			.post(`http://localhost:3033/${data.role}s/signup`, trueData)
 			.then((res) => {
 				alert('sign up confirmed');
 			})
 			.catch((err) => {
 				// Handle Error Here
 				console.error(err);
-			}); */
+			});
 	};
 
 	return (

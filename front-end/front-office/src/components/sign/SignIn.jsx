@@ -7,7 +7,8 @@ export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
 		console.log(data);
-		/* axios
+
+		axios
 			.post(`http://localhost:3033/${data.role}s/signin`, data)
 			.then((res) => {
 				alert('sign in confirmed');
@@ -15,7 +16,7 @@ export default function Bounty() {
 			.catch((err) => {
 				// Handle Error Here
 				console.error(err);
-			}); */
+			});
 	};
 
 	return (
