@@ -12,6 +12,9 @@ export default function Navbar() {
 			<Link to='/sherif' style={style}>
 				Sherif
 			</Link>
+			<Link to='/bounty' style={style}>
+				Add a bounty
+			</Link>
 			<Link to='/bountylist' style={style}>
 				Bountylist
 			</Link>

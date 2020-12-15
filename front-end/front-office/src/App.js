@@ -7,6 +7,8 @@ import About from './components/About';
 import Hunter from './components/Hunter';
 import Sherif from './components/Sherif';
 import Bounty from './components/Bounty';
+import SignIn from './components/sign/SignIn'
+import SignUp from './components/sign/SignUp'
 
 import './App.css';
 import HuntList from './components/HuntList';
@@ -38,7 +40,9 @@ function App() {
 				<Route path='/about'>
 					<About />
 				</Route>
-				<Route path='/hunter'>{loaded && <Hunter bandits={bandits} />}</Route>
+				<Route path='/hunter'>
+					{loaded && <Hunter bandits={bandits} />}
+					</Route>
 				<Route path='/huntlist'>
 					{loaded && <HuntList bandits={bandits} />}
 				</Route>
@@ -50,6 +54,12 @@ function App() {
 				</Route>
 				<Route path='/bounty'>
 					<Bounty />
+				</Route>
+				<Route path='/signin'>
+					<SignIn />
+				</Route>
+				<Route path='/signup'>
+					<SignUp />
 				</Route>
 			</Router>
 		</div>

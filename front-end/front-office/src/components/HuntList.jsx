@@ -35,6 +35,9 @@ export default function HuntList(props) {
 		setSelected(e.target.value);
 		setCurrentBandit(bandits[e.target.value - 1]);
 	};
+	const startHunt=()=>{
+		console.log(currentBandit)
+	}
 
 	return (
 		<>
@@ -59,6 +62,7 @@ export default function HuntList(props) {
 			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
 			<button onClick={handlePrev}>precedent</button>
+			<button onClick={startHunt}>Start the hunt !</button>
 			<button onClick={handleNext}>suivant</button>
 		</>
 	);

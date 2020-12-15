@@ -15,6 +15,12 @@ export default function Navbar() {
 			<Link to='/about' style={style}>
 				About
 			</Link>
+			<Link to='/signin' style={style}>
+				Sign In
+			</Link>
+			<Link to='/signup' style={style}>
+				Sign Up
+			</Link>
 			<Link to='/sherif' style={style}>
 				Sherif
 			</Link>

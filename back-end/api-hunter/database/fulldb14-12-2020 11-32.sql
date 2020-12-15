@@ -36,19 +36,21 @@ CREATE TABLE `user` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `role` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `localisation` varchar(255) NOT NULL
+  `localisation` varchar(255) NOT NULL,
+  `pass` varchar(255) NOT NULL
+  
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'sherif', 'Malika Champlin', 'la-bas');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'sherif', 'Kathlyn Corkery', 'la-bas');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Adrienne Hettinger', 'ici');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Jerry Auer', 'la-bas');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'sherif', 'Kristofer Williamson', 'la');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Maritza Bosco', 'la');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Carrie Walker', 'ici');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Lewis Trantow', 'ici');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'sherif', 'Agustina Graham', 'la');
-INSERT INTO `user` ( `role`, `name`, `localisation`) VALUES ( 'hunter', 'Margaret Nader', 'ici');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'sherif', 'Malika Champlin', 'la-bas', 'secret1');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'sherif', 'Kathlyn Corkery', 'la-bas', 'secret2');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Adrienne Hettinger', 'ici', 'secret3');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Jerry Auer', 'la-bas', 'secret4');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'sherif', 'Kristofer Williamson', 'la', 'secret5');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Maritza Bosco', 'la', 'secret6');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Carrie Walker', 'ici', 'secret7');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Lewis Trantow', 'ici', 'secret8');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'sherif', 'Agustina Graham', 'la', 'secret9');
+INSERT INTO `user` ( `role`, `name`, `localisation`, `pass`) VALUES ( 'hunter', 'Margaret Nader', 'ici', 'secret10');
 
 
 #

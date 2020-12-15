@@ -10,7 +10,7 @@ export default function Navbar() {
 	return (
 		<div>
 			<Link to='/huntlist' style={style}>
-				Sherif
+				List of my hunt
 			</Link>
 			<Link to='/hunter' style={style}>
 				Hunter
