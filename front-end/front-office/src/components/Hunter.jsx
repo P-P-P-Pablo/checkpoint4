@@ -4,7 +4,8 @@ import BanditCard from './BanditCard';
 import Navbar from './navbar/HuntBar';
 
 export default function Hunter(props) {
-	const bandits = props.bandits;
+	const myId =6;
+	const bandits = props.bandits.filter(bandit => bandit.status !== "chasse" && bandit.status !== "attrape");
 	let [currentBandit, setCurrentBandit] = useState('');
 	let currentID = currentBandit.id - 1;
 
@@ -25,9 +26,17 @@ export default function Hunter(props) {
 			: setCurrentBandit(bandits[bandits.length - 1]);
 	};
 
-	const startHunt=()=>{
-		Axios.put(`localhost:3033/hunters/mybandits/6/chasse/${currentBandit.id}`)
-	}
+	const startHunt = () => {
+		Axios.put(`http://localhost:3033/hunters/mybandits/${myId}/chasse/${currentBandit.id}`, currentBandit)
+			.then((res) => {
+				alert('hunt start confirmed');
+				console.log(res);
+			})
+			.catch((err) => {
+				// Handle Error Here
+				console.error(err);
+			});
+	};
 
 	return (
 		<>

@@ -47,7 +47,7 @@ function App() {
 					{loaded && <HuntList bandits={bandits} />}
 				</Route>
 				<Route path='/sherif'>
-					<Sherif />
+				{loaded && <Sherif bandits={bandits} />}
 				</Route>
 				<Route path='/bountylist'>
 					{loaded && <BountyList bandits={bandits} />}

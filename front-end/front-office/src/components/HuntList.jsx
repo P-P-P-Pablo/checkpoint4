@@ -4,30 +4,56 @@ import BanditCard from './BanditCard';
 import Navbar from './navbar/HuntBar';
 
 export default function HuntList(props) {
-	const bandits = props.bandits;
+	const myId = 6;
+	const [bandits, listBandits] = useState(props.bandits);
+	const [myBandits, listMyBandits] = useState([]);
+	const [loaded, isLoaded] = useState(false);
 	let [currentBandit, setCurrentBandit] = useState('');
-	let currentID = currentBandit && currentBandit.id - 1;
+	let [currentID, setCurrentId] = useState(0);
 	const [selected, setSelected] = useState('');
 
 	useEffect(() => {
-		setCurrentBandit(bandits ? bandits[0] : '');
-	}, [bandits]);
+		!loaded &&
+			Axios.get('http://localhost:3033/hunters/mybandits/' + myId)
+				.then((res) => {
+					listMyBandits(res.data);
+					isLoaded(true);
+				})
+				.catch((err) => {
+					// Handle Error Here
+					console.error(err);
+				});
+	});
+
+	const majList = (newList) => {
+		if (newList.length > 0 && loaded) {
+			listBandits(newList);
+		}
+	};
 
 	useEffect(() => {
-		setSelected(currentBandit.id);
-	}, [currentBandit, selected]);
+		majList(myBandits);
+	}, [myBandits]);
+
+	useEffect(() => {
+		setCurrentBandit(bandits ? bandits[currentID] : '');
+	}, [bandits, currentID]);
+
+	useEffect(() => {
+		setSelected(currentID);
+	}, [currentID, selected]);
 
 	const handleNext = (e) => {
 		e.preventDefault();
 		currentID + 1 < bandits.length
-			? setCurrentBandit(bandits[currentID + 1])
-			: setCurrentBandit(bandits[0]);
+			? setCurrentId(currentID + 1)
+			: setCurrentId(0);
 	};
 	const handlePrev = (e) => {
 		e.preventDefault();
-		currentID - 1 > 0
-			? setCurrentBandit(bandits[currentID - 1])
-			: setCurrentBandit(bandits[bandits.length - 1]);
+		currentID - 1 >= 0
+			? setCurrentId(currentID - 1)
+			: setCurrentId(bandits.length - 1);
 	};
 
 	const handleChange = (e) => {
@@ -36,9 +62,20 @@ export default function HuntList(props) {
 		setSelected(e.target.value);
 		setCurrentBandit(bandits[e.target.value - 1]);
 	};
-	const endHunt=()=>{
-		Axios.put(`localhost:3033/hunters/mybandits/6/attrape/${currentBandit.id}`)
-	}
+	const endHunt = () => {
+		Axios.put(
+			`http://localhost:3033/hunters/mybandits/${myId}/attrape/${currentBandit.id}`,
+			currentBandit
+		)
+			.then((res) => {
+				alert('hunt end confirmed');
+				console.log(res);
+			})
+			.catch((err) => {
+				// Handle Error Here
+				console.error(err);
+			});
+	};
 
 	return (
 		<>
@@ -46,14 +83,14 @@ export default function HuntList(props) {
 			<h2>Welcome to huntlist page</h2>
 			<Navbar />
 			<div style={{ display: 'flex', flexFlow: 'column nowrap', margin: 10 }}>
-				{bandits.map((bandit) => {
+				{bandits.map((bandit, i) => {
 					return (
 						<label key={bandit.name} value={bandit.id}>
 							<input
 								key={bandit.name}
 								type='radio'
 								value={bandit.id}
-								checked={bandit.id === selected}
+								checked={i === selected}
 								onChange={handleChange}
 							/>
 							{bandit.name}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Navbar from './navbar/SherifBar';
+import Navbar from './../navbar/Navbar';
 import axios from 'axios';
 
 export default function Bounty() {
