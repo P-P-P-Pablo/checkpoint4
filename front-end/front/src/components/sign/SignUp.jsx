@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import Navbar from './../navbar/Navbar';
 import axios from 'axios';
 
-export default function SignUp() {
+export default function Bounty() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
 		let trueData = data;
