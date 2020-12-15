@@ -4,11 +4,12 @@ import Navbar from './navbar/SherifBar';
 import axios from 'axios';
 
 export default function Bounty() {
+	const myId =6;
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
 		data.status = 'libre';
 		axios
-			.post('http://localhost:3033/bandits', data)
+			.post('http://localhost:3033/hunters/mybandits/'+myId, data)
 			.then((res) => {
 				alert('Prime posté');
 			})
