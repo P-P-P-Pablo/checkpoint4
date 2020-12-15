@@ -9,12 +9,14 @@ import Sherif from './components/Sherif';
 import Bounty from './components/Bounty';
 import SignIn from './components/sign/SignIn';
 import SignUp from './components/sign/SignUp';
-import PrivateRoute from './components/sign/PrivateRoute';
-import { useAuth, ProvideAuth, AuthButton } from './authentication/authContext';
+import PrivateRoute from './authentication/PrivateRoute';
+import Authentication  from './authentication/authContext';
 
 import './App.css';
 import HuntList from './components/HuntList';
 import BountyList from './components/BountyList';
+
+const { ProvideAuth, AuthButton } = Authentication ;
 
 function App() {
 	const [bandits, listBandits] = useState('');
@@ -36,7 +38,7 @@ function App() {
 		<ProvideAuth>
 		<Router>
 			<div className='App'>
-			<AuthButton />
+			
 				<Switch>
 					<Navbar />
 					<Route exact path='/'>

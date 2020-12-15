@@ -3,15 +3,13 @@ import { useForm } from 'react-hook-form';
 import Navbar from './../navbar/Navbar';
 import axios from 'axios';
 
-import {
-	
-	useHistory,
-	useLocation,
-} from 'react-router-dom';
-import { useAuth } from './authContext';
+import { useHistory, useLocation } from 'react-router-dom';
+import Authentication from '../../authentication/authContext';
 
+const { useAuth } = Authentication
 
-function LoginPage() {
+export default function Signin() {
+	//authentication things
 	let history = useHistory();
 	let location = useLocation();
 	let auth = useAuth();
@@ -22,18 +20,11 @@ function LoginPage() {
 			history.replace(from);
 		});
 	};
+	//////////
 
-	return (
-		<div>
-			<p>You must log in to view the page at {from.pathname}</p>
-			<button onClick={login}>Log in</button>
-		</div>
-	);
-}
-
-export default function Signin() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
+		login()
 		axios
 			.post(`http://localhost:3033/${data.role}s/signin`, data)
 			.then((res) => {

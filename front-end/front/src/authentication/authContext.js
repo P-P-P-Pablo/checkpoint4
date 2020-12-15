@@ -1,19 +1,30 @@
 import React, { useContext, createContext, useState } from 'react';
-import fakeAuth from './fakeAuth';
 import { useHistory } from 'react-router-dom';
 
-export default const authContext = createContext();
+const fakeAuth = {
+	isAuthenticated: true,
+	signin(cb) {
+		fakeAuth.isAuthenticated = true;
+		setTimeout(cb, 100); // fake async
+	},
+	signout(cb) {
+		fakeAuth.isAuthenticated = false;
+		setTimeout(cb, 100);
+	},
+};
 
-export default function ProvideAuth({ children }) {
+const authContext = createContext();
+
+function ProvideAuth({ children }) {
 	const auth = useProvideAuth();
 	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
-export default function useAuth() {
+function useAuth() {
 	return useContext(authContext);
 }
 
-export default function useProvideAuth() {
+function useProvideAuth() {
 	const [user, setUser] = useState(null);
 
 	const signin = (cb) => {
@@ -37,7 +48,7 @@ export default function useProvideAuth() {
 	};
 }
 
-export default function AuthButton() {
+function AuthButton() {
 	let history = useHistory();
 	let auth = useAuth();
 
@@ -45,6 +56,7 @@ export default function AuthButton() {
 		<p>
 			Welcome!{' '}
 			<button
+				className='button'
 				onClick={() => {
 					auth.signout(() => history.push('/'));
 				}}>
@@ -52,6 +64,18 @@ export default function AuthButton() {
 			</button>
 		</p>
 	) : (
-		<p>You are not logged in.</p>
+		<>
+			<button
+				className='button'
+				onClick={() => {
+					auth.signin(() => history.push('/'));
+				}}>
+				Sign in
+			</button>
+			<p>You are not logged in.</p>
+		</>
 	);
 }
+
+const Authentication = { useAuth, ProvideAuth, AuthButton };
+export default Authentication;
