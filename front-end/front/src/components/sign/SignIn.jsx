@@ -3,7 +3,35 @@ import { useForm } from 'react-hook-form';
 import Navbar from './../navbar/Navbar';
 import axios from 'axios';
 
-export default function Bounty() {
+import {
+	
+	useHistory,
+	useLocation,
+} from 'react-router-dom';
+import { useAuth } from './authContext';
+
+
+function LoginPage() {
+	let history = useHistory();
+	let location = useLocation();
+	let auth = useAuth();
+
+	let { from } = location.state || { from: { pathname: '/' } };
+	let login = () => {
+		auth.signin(() => {
+			history.replace(from);
+		});
+	};
+
+	return (
+		<div>
+			<p>You must log in to view the page at {from.pathname}</p>
+			<button onClick={login}>Log in</button>
+		</div>
+	);
+}
+
+export default function Signin() {
 	const { register, handleSubmit, errors } = useForm();
 	const onSubmit = (data) => {
 		axios

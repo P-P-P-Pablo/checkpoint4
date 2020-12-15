@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import Hunter from './components/Hunter';
 import Sherif from './components/Sherif';
 import Bounty from './components/Bounty';
-import SignIn from './components/sign/SignIn'
-import SignUp from './components/sign/SignUp'
+import SignIn from './components/sign/SignIn';
+import SignUp from './components/sign/SignUp';
+import PrivateRoute from './components/sign/PrivateRoute';
+import { useAuth, ProvideAuth, AuthButton } from './authentication/authContext';
 
 import './App.css';
 import HuntList from './components/HuntList';
@@ -31,38 +33,43 @@ function App() {
 			});
 	}, []);
 	return (
-		<div className='App'>
-			<Router>
-				<Navbar />
-				<Route exact path='/'>
-					<Home />
-				</Route>
-				<Route path='/about'>
-					<About />
-				</Route>
-				<Route path='/hunter'>
-					{loaded && <Hunter bandits={bandits} />}
+		<ProvideAuth>
+		<Router>
+			<div className='App'>
+			<AuthButton />
+				<Switch>
+					<Navbar />
+					<Route exact path='/'>
+						<Home />
 					</Route>
-				<Route path='/huntlist'>
-					{loaded && <HuntList bandits={bandits} />}
-				</Route>
-				<Route path='/sherif'>
-				{loaded && <Sherif bandits={bandits} />}
-				</Route>
-				<Route path='/bountylist'>
-					{loaded && <BountyList bandits={bandits} />}
-				</Route>
-				<Route path='/bounty'>
-					<Bounty />
-				</Route>
-				<Route path='/signin'>
-					<SignIn />
-				</Route>
-				<Route path='/signup'>
-					<SignUp />
-				</Route>
-			</Router>
-		</div>
+					<Route path='/about'>
+						<About />
+					</Route>
+					<PrivateRoute path='/hunter'>
+						{loaded && <Hunter bandits={bandits} />}
+					</PrivateRoute>
+					<PrivateRoute path='/huntlist'>
+						{loaded && <HuntList bandits={bandits} />}
+					</PrivateRoute>
+					<PrivateRoute path='/sherif'>
+						{loaded && <Sherif bandits={bandits} />}
+					</PrivateRoute>
+					<PrivateRoute path='/bountylist'>
+						{loaded && <BountyList bandits={bandits} />}
+					</PrivateRoute>
+					<PrivateRoute path='/bounty'>
+						<Bounty />
+					</PrivateRoute>
+					<Route path='/signin'>
+						<SignIn />
+					</Route>
+					<Route path='/signup'>
+						<SignUp />
+					</Route>
+				</Switch>
+			</div>
+		</Router>
+		</ProvideAuth>
 	);
 }
 
