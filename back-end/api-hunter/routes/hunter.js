@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const connection = require('./../connection');
 const { logInfos, endRequest } = require('../lib/utils');
+const banditRouter = require('./bandit');
+router.use('/mybandits', banditRouter);
 
 router.get('/', logInfos, (req, res, next) => {
 	const maRequete = `SELECT * FROM user where role="hunter"`;

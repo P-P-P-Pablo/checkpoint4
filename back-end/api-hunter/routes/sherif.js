@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const connection = require("./../connection");
 const { logInfos, endRequest } = require("../lib/utils");
+const banditRouter = require('./bandit');
+router.use('/mybandits', banditRouter);
 
 
 router.get("/", logInfos, (req, res, next) => {
@@ -25,7 +27,7 @@ router.post("/signup", logInfos, (req, res, next) => {
   let data = Object.values(req.body).join("','");
   const maRequete=`INSERT INTO user(${fields}) VALUES ( '${data}' )`
   connection.query(maRequete, (err, results) => {
-    const myID = results.insertId
+    
     const returnMe =  `SELECT * FROM user WHERE id = ? AND role="sherif" `
     connection.query(returnMe,[myID], (err, results) => {
         endRequest(res, results, err);

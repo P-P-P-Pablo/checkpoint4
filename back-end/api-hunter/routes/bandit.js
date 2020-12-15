@@ -4,6 +4,7 @@ const connection = require("./../connection");
 const { logInfos, endRequest } = require("../lib/utils");
 
 
+
 router.get("/", logInfos, (req, res, next) => {
     const maRequete =  `SELECT * FROM bandit`
     connection.query(maRequete, (err, results) => {
@@ -19,13 +20,27 @@ router.get("/:id", logInfos, (req, res, next) => {
       })
 });
 
-router.post("/", logInfos, (req, res, next) => {
-  console.log(req.body);
-  let fields = Object.keys(req.body).join(",");
+router.post("/:id", logInfos, (req, res, next) => {
+  console.log("reqbody",req.body);
+  let myId = req.params.id;
+  let banditId;
+  let fields = Object.keys(req.body).join(", ");
   let data = Object.values(req.body).join("','");
-  const maRequete=`INSERT INTO bandit(${fields}) VALUES ( '${data}' )`
+  const maRequete=`INSERT INTO bandit( ${fields}) VALUES ( ' ${data}' )`
   connection.query(maRequete, (err, results) => {
-    endRequest(res, results, err);
+     banditId = results.insertId
+    const assoRequete = `INSERT INTO user_bandit ( ${"`"+"bandit_id"+"`"}, ${"`"+"user_id"+"`"}) VALUES ( ? , ? )`
+    connection.query(assoRequete,[banditId, myId], (err2, results2) => {
+      if (err2) {
+        console.trace(err2);
+        
+      } else {
+        console.log(results2)
+        endRequest(res, results, err);
+      }
+      })
+     
+    
   })
 });
 
