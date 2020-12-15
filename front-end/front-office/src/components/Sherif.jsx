@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
 import Navbar from './navbar/SherifBar';
+import '../styles/Sherif.css';
 
 export default function Sherif(props) {
 	const myId = 6;
@@ -18,7 +19,6 @@ export default function Sherif(props) {
 				.then((res) => {
 					listMyBandits(res.data);
 					isLoaded(true);
-					
 				})
 				.catch((err) => {
 					// Handle Error Here
@@ -42,19 +42,18 @@ export default function Sherif(props) {
 
 	useEffect(() => {
 		setSelected(currentID);
-		
 	}, [currentID, selected]);
 
 	const handleNext = (e) => {
 		e.preventDefault();
-		
+
 		currentID + 1 < bandits.length
 			? setCurrentId(currentID + 1)
 			: setCurrentId(0);
 	};
 	const handlePrev = (e) => {
 		e.preventDefault();
-		
+
 		currentID - 1 >= 0
 			? setCurrentId(currentID - 1)
 			: setCurrentId(bandits.length - 1);
@@ -82,11 +81,11 @@ export default function Sherif(props) {
 	};
 
 	return (
-		<>
+		<div className='sherif'>
 			<h1>Sherif</h1>
 			<h2>Your bounty list</h2>
 			<Navbar />
-			<div style={{ display: 'flex', flexFlow: 'column nowrap', margin: 10 }}>
+			<div className='mybandits'>
 				{bandits.map((bandit) => {
 					return (
 						<label key={bandit.name} value={bandit.id}>
@@ -103,9 +102,9 @@ export default function Sherif(props) {
 				})}
 			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
-			<button onClick={handlePrev}>precedent</button>
-			<button onClick={endHunt}>I catched him !</button>
-			<button onClick={handleNext}>suivant</button>
-		</>
+			<button className='button left' onClick={handlePrev}>precedent</button>
+			<button className='button middle' onClick={endHunt}>I catched him !</button>
+			<button className='button right' onClick={handleNext}>suivant</button>
+		</div>
 	);
 }

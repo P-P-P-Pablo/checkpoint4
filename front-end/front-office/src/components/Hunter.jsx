@@ -2,10 +2,13 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
 import Navbar from './navbar/HuntBar';
+import '../styles/Hunter.css';
 
 export default function Hunter(props) {
-	const myId =6;
-	const bandits = props.bandits.filter(bandit => bandit.status !== "chasse" && bandit.status !== "attrape");
+	const myId = 6;
+	const bandits = props.bandits.filter(
+		(bandit) => bandit.status !== 'chasse' && bandit.status !== 'attrape'
+	);
 	let [currentBandit, setCurrentBandit] = useState('');
 	let currentID = currentBandit.id - 1;
 
@@ -27,7 +30,10 @@ export default function Hunter(props) {
 	};
 
 	const startHunt = () => {
-		Axios.put(`http://localhost:3033/hunters/mybandits/${myId}/chasse/${currentBandit.id}`, currentBandit)
+		Axios.put(
+			`http://localhost:3033/hunters/mybandits/${myId}/chasse/${currentBandit.id}`,
+			currentBandit
+		)
 			.then((res) => {
 				alert('hunt start confirmed');
 				console.log(res);
@@ -39,14 +45,20 @@ export default function Hunter(props) {
 	};
 
 	return (
-		<>
+		<div className='hunter'>
 			<h1>Hunter</h1>
 			<h2>Welcome to hunter page</h2>
 			<Navbar />
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
-			<button onClick={handlePrev}>precedent</button>
-			<button onClick={startHunt}>Start the hunt !</button>
-			<button onClick={handleNext}>suivant</button>
-		</>
+			<button className='button left' onClick={handlePrev}>
+				precedent
+			</button>
+			<button className='button middle' onClick={startHunt}>
+				Start the hunt !
+			</button>
+			<button className='button right' onClick={handleNext}>
+				suivant
+			</button>
+		</div>
 	);
 }

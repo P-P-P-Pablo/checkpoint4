@@ -2,20 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-	const style = {
-		margin: 10,
-		color: 'black',
-	};
+	
 
 	return (
-		<div>
-			<Link to='/sherif' style={style}>
+		<div className="navbar">
+			<Link to='/sherif' className="navbarLink">
 				Sherif
 			</Link>
-			<Link to='/bounty' style={style}>
+			<Link to='/bounty' className="navbarLink">
 				Add a bounty
 			</Link>
-			<Link to='/bountylist' style={style}>
+			<Link to='/bountylist' className="navbarLink">
 				Bountylist
 			</Link>
 		</div>

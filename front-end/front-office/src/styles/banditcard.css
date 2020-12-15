@@ -1,0 +1,14 @@
+.banditcontainer{
+    display:flex;
+    align-items: center;
+    justify-items: center;
+    width:100%;
+}
+
+.banditcard{
+    display: flex;
+    flex-flow: column nowrap;
+    border: solid black 2px;
+    align-items: center;
+    justify-items: center;
+}

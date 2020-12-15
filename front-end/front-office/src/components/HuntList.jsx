@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
 import Navbar from './navbar/HuntBar';
+import '../styles/Hunter.css';
 
 export default function HuntList(props) {
 	const myId = 6;
@@ -78,11 +79,13 @@ export default function HuntList(props) {
 	};
 
 	return (
-		<>
+		<div className='hunter'>
 			<h1>Hunter</h1>
 			<h2>Welcome to huntlist page</h2>
 			<Navbar />
-			<div style={{ display: 'flex', flexFlow: 'column nowrap', margin: 10 }}>
+			<div
+				className='mybandits'
+				style={{ display: 'flex', flexFlow: 'column nowrap', margin: 10 }}>
 				{bandits.map((bandit, i) => {
 					return (
 						<label key={bandit.name} value={bandit.id}>
@@ -99,9 +102,15 @@ export default function HuntList(props) {
 				})}
 			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
-			<button onClick={handlePrev}>precedent</button>
-			<button onClick={endHunt}>I catched him !</button>
-			<button onClick={handleNext}>suivant</button>
-		</>
+			<button className='button left' onClick={handlePrev}>
+				precedent
+			</button>
+			<button className='button middle' onClick={endHunt}>
+				I catched him !
+			</button>
+			<button className='button right' onClick={handleNext}>
+				suivant
+			</button>
+		</div>
 	);
 }

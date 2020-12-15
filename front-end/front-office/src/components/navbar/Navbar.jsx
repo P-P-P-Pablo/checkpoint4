@@ -2,29 +2,26 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-	const style = {
-		margin: 10,
-		color: 'black',
-	};
+	
 
 	return (
-		<div>
-			<Link to='/' style={style}>
+		<div className="navbar">
+			<Link to='/' className="navbarLink">
 				Home
 			</Link>
-			<Link to='/about' style={style}>
+			<Link to='/about' className="navbarLink">
 				About
 			</Link>
-			<Link to='/signin' style={style}>
+			<Link to='/signin' className="navbarLink">
 				Sign In
 			</Link>
-			<Link to='/signup' style={style}>
+			<Link to='/signup' className="navbarLink">
 				Sign Up
 			</Link>
-			<Link to='/sherif' style={style}>
+			<Link to='/sherif' className="navbarLink">
 				Sherif
 			</Link>
-			<Link to='/hunter' style={style}>
+			<Link to='/hunter' className="navbarLink">
 				Hunter
 			</Link>
 		</div>

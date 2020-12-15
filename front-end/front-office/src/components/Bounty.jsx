@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Navbar from './navbar/SherifBar';
 import axios from 'axios';
+import '../styles/Sherif.css';
 
 export default function Bounty() {
 	const myId =6;
@@ -20,7 +21,7 @@ export default function Bounty() {
 	};
 
 	return (
-		<>
+		<div className="sherif">
 			<h1>Sherif</h1>
 			<h2>Welcome to Sherif page</h2>
 			<Navbar />
@@ -74,6 +75,6 @@ export default function Bounty() {
 
 				<input type='submit' />
 			</form>
-		</>
+		</div>
 	);
 }

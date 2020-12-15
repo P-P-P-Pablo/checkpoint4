@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BanditCard from './BanditCard';
 import Navbar from './navbar/SherifBar';
+import '../styles/Sherif.css';
 
 export default function BountyList(props) {
 	const bandits = props.bandits;
@@ -36,7 +37,7 @@ export default function BountyList(props) {
 	};
 
 	return (
-		<>
+		<div className='sherif'>
 			<h1>Sherif</h1>
 			<h2>Welcome to bounty list page</h2>
 			<Navbar />
@@ -57,8 +58,12 @@ export default function BountyList(props) {
 				})}
 			</div>
 			{currentBandit ? <BanditCard bandit={currentBandit} /> : ''}
-			<button onClick={handlePrev}>precedent</button>
-			<button onClick={handleNext}>suivant</button>
-		</>
+			<button className='button left' onClick={handlePrev}>
+				precedent
+			</button>
+			<button className='button right' onClick={handleNext}>
+				suivant
+			</button>
+		</div>
 	);
 }

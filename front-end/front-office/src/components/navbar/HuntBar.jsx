@@ -2,17 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-	const style = {
-		margin: 10,
-		color: 'black',
-	};
+	
 
 	return (
-		<div>
-			<Link to='/huntlist' style={style}>
+		<div className="navbar">
+			<Link to='/huntlist' className="navbarLink">
 				List of my hunt
 			</Link>
-			<Link to='/hunter' style={style}>
+			<Link to='/hunter' className="navbarLink">
 				Hunter
 			</Link>
 		</div>
